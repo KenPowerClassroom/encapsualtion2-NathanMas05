@@ -15,8 +15,17 @@ public:
         balance += amount;
     }
 
-    void withdraw(double amount) {
-        balance -= amount;
+    void withdraw(double amount) 
+    {
+        if (balance > 500)
+        {
+            balance -= amount;
+            std::cout << "Withdrawal successful. New balance: $" << balance << std::endl;
+        }
+        else 
+        {
+            std::cout << "Insufficient funds for withdrawal." << std::endl;
+        }
     }
 };
 class HeatingSystem {
@@ -123,17 +132,11 @@ int main() {
     //////////////////////////////////////////////////////////////////
     // Exercise 1
     //////////////////////////////////////////////////////////////////
- 
+
     BankAccount account(1000.0);
 
-    // Violation of Tell, Don't Ask
-    if (account.getBalance() > 500) {
-        account.withdraw(500);
-        std::cout << "Withdrawal successful. New balance: $" << account.getBalance() << std::endl;
-    }
-    else {
-        std::cout << "Insufficient funds for withdrawal." << std::endl;
-    }
+    BankAccount withdraw(double amount);
+
     //////////////////////////////////////////////////////////////////
     // Exercise 2
     //////////////////////////////////////////////////////////////////
@@ -141,10 +144,12 @@ int main() {
     Thermostat thermostat(18.5);
     HeatingSystem heating;
 
-    if (thermostat.getCurrentTemperature() < 20.0) {
+    if (thermostat.getCurrentTemperature() < 20.0) 
+    {
         heating.turnOn();
     }
-    else {
+    else 
+    {
         heating.turnOff();
     }
     
